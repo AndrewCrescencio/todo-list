@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <el-config-provider namespace="ep">
-    <header>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/user">User</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-      </nav>
-    </header>
+    <AppHeader />
     <RouterView />
   </el-config-provider>
 </template>
