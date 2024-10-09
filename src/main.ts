@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import './style.css'
+import "@/styles/index.scss"
 import App from './App.vue'
+
+import 'virtual:uno.css'
 
 const pinia = createPinia()
 

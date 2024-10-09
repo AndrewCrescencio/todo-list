@@ -3,17 +3,22 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/user">User</RouterLink>
-      <RouterLink to="/login">Login</RouterLink>
-    </nav>
-  </header>
-  <RouterView />
+  <el-config-provider namespace="ep">
+    <header>
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/user">User</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
+      </nav>
+    </header>
+    <RouterView />
+  </el-config-provider>
 </template>
 
-<style scoped>
+<style>
+#app {  
+  color: var(--ep-text-color-primary);
+}
 nav {
   display: flex;
   align-items: center;
