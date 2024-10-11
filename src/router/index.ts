@@ -1,14 +1,15 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
-import { supabase } from "../services/supabase";
+import { supabase } from "@/services/supabase";
 
-import HomeView from "../views/HomeView.vue";
+import HomeView from "@/views/HomeView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
     component: HomeView,
+    meta: { hideAppHeader: true },
   },
   {
     path: "/user",
@@ -17,14 +18,30 @@ const routes: Array<RouteRecordRaw> = [
     meta: { requiresAuth: true },
   },
   {
+    path: "/todos",
+    name: "todos",
+    component: () => import("../views/TodosView.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("../views/LoginView.vue"),
   },
   {
+    path: "/reset-password",
+    name: "reset-password",
+    component: () => import("../views/ResetPasswordView.vue"),
+  },
+  {
     path: "/unauthorized",
     name: "unauthorized",
     component: () => import("../views/UnauthorizedView.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: () => import("../views/NotFoundView.vue"),
   },
 ];
 
@@ -38,17 +55,20 @@ async function isAuthenticated(): Promise<boolean> {
   return !!data.session;
 }
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _from, next) => {
+  const userIsAuthenticated = await isAuthenticated();
   if (to.meta.requiresAuth) {
-    const userIsAuthenticated = await isAuthenticated();
-
     if (userIsAuthenticated) {
       next();
     } else {
       next("/unauthorized");
     }
   } else {
-    next();
+    if (to.path == "/" && userIsAuthenticated) {
+      next("/todos");
+    } else {
+      next();
+    }
   }
 });
 
