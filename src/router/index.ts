@@ -64,7 +64,10 @@ router.beforeEach(async (to, _from, next) => {
       next("/unauthorized");
     }
   } else {
-    if (to.path == "/" && userIsAuthenticated) {
+    if (
+      (to.path == "/" && userIsAuthenticated) ||
+      (to.path == "/login" && userIsAuthenticated)
+    ) {
       next("/todos");
     } else {
       next();
