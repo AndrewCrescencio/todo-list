@@ -1,6 +1,7 @@
 import { supabase } from "@/services/supabase";
 import { Session } from "@supabase/supabase-js";
 import type { Credentials } from "@/models/credentials";
+import { APP_BASE_URL } from "@/constants";
 
 export function authService() {
   async function getUserSession(): Promise<Session | null> {
@@ -39,8 +40,7 @@ export function authService() {
 
   async function recoverPasswordForEmail(email: string) {
     return await supabase.auth.resetPasswordForEmail(email, {
-      //TODO: usar base URL
-      redirectTo: "http://localhost:5173/reset-password",
+      redirectTo: `${APP_BASE_URL}/reset-password`,
     });
   }
 
