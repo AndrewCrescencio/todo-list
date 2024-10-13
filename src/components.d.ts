@@ -42,4 +42,7 @@ declare module 'vue' {
     TodosList: typeof import('./components/TodosList.vue')['default']
     'TodosList.old': typeof import('./components/TodosList.old.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+  }
 }

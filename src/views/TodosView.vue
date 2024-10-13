@@ -1,13 +1,6 @@
 <script lang="ts" setup>
-import { onBeforeMount } from 'vue';
-import { useStoreTodos } from '@/stores/todos';
 import { useStoreTodoForm } from '@/stores/todo-form';
-
-const { fetchTodos } = useStoreTodos();
-
 const { handleAddTodo } = useStoreTodoForm();
-
-onBeforeMount(async () => await fetchTodos());
 </script>
 <template>
     <section class="container px-4 pb-10 mx-auto">

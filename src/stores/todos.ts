@@ -7,8 +7,10 @@ export const useStoreTodos = defineStore("todos", () => {
   const todoService = TodoService();
 
   const todos = ref<Todo[]>();
+  let isLoading = ref(false);
 
   async function fetchTodos() {
+    isLoading.value = true;
     try {
       const { error, data } = await todoService.fetchTodos();
 
@@ -22,6 +24,8 @@ export const useStoreTodos = defineStore("todos", () => {
       todos.value = data;
     } catch (err) {
       console.error("Error retrieving data from db", err);
+    } finally {
+      isLoading.value = false;
     }
   }
 
@@ -108,6 +112,7 @@ export const useStoreTodos = defineStore("todos", () => {
   }
 
   return {
+    isLoading,
     todos,
     fetchTodos,
     postTodo,
