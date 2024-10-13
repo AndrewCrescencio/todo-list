@@ -1,7 +1,7 @@
 <template>
   <el-card>
     <template #header>
-      <div class="md(flex items-center justify-between)">
+      <div class="md:(flex items-center justify-between)">
         <p class="truncate md(my-0)">
           {{ todo.title }}
         </p>
