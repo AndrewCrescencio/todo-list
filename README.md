@@ -7,6 +7,8 @@
 - Backend:
   - [app.supabase.com](https://app.supabase.com/): hosted Postgres database with restful API for usage with Supabase.js.
 
+Observação: é necessário a criação de um back-end para utilizar o supabase, usar createClient no lado do cliente não é seguro!
+
 ## Deploy your own
 
 ### 1. Create new project
