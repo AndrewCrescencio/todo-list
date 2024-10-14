@@ -56,9 +56,10 @@ const onDelete = async () => {
 const confirmDelete = () => {
   ElMessageBox.confirm(
     'Do you want to delete the task permanently? Continue?',
-    'Warning',
+    'Delete Task',
     {
-      confirmButtonText: 'OK',
+      confirmButtonText: 'Delete Task',
+      confirmButtonClass: 'ep-button--danger',
       cancelButtonText: 'Cancel',
       type: 'warning',
     }
