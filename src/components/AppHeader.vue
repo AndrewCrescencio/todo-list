@@ -2,6 +2,7 @@
 import { toggleDark } from '@/composables/dark';
 import { useAuth } from '@/composables/useAuth';
 import { useStoreUser } from '@/stores/user';
+import { ElMessage, ElMessageBox } from 'element-plus';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 const { handleLogout } = useAuth();
@@ -9,8 +10,26 @@ const store = useStoreUser()
 const { userSession } = storeToRefs(store)
 const { push } = useRouter()
 const logOut = () => {
-  handleLogout()
-  push('/')
+
+  ElMessageBox.confirm(
+    'You will need to log back in to access your tasks.',
+    'Log out of your account?',
+    {
+      confirmButtonText: 'Log out',
+      confirmButtonClass: 'ep-button--danger',
+      cancelButtonText: 'Cancel',
+      type: 'warning',
+    }
+  )
+    .then(async () => {
+      await handleLogout()
+      push('/')
+      ElMessage({
+        type: 'success',
+        message: 'Logged out, cya',
+      })
+    })
+    .catch(() => { })
 }
 </script>
 
