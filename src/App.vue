@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { RouterView, useRoute } from 'vue-router'
+import { computed } from "vue";
+import { RouterView, useRoute } from "vue-router";
 
 const route = useRoute();
 
-const hideAppHeader = computed(() => route.meta.hideAppHeader)
+const hideAppHeader = computed(() => route.meta.hideAppHeader);
 </script>
 
 <template>
-  <el-config-provider namespace="ep" :z-index="3000" >
-    <AppHeader v-if="!hideAppHeader"/>
+  <el-config-provider namespace="ep" :z-index="3000">
+    <AppHeader v-if="!hideAppHeader" />
     <RouterView />
   </el-config-provider>
 </template>
@@ -21,9 +21,8 @@ const hideAppHeader = computed(() => route.meta.hideAppHeader)
 body {
   padding-top: 60px;
   scroll-padding-top: 60px;
-
 }
-#app {  
+#app {
   color: var(--ep-text-color-primary);
 }
 nav {
