@@ -18,6 +18,7 @@
     <p v-if="todo.description">Description</p>
     <p>{{ todo.description }}</p>
     <p>Created day - {{ createdAt }}</p>
+    <p>Updated at - {{ updatedAt }}</p>
     <el-checkbox v-model="todo['status']" @click="updateTodoStatus(todo.id, !todo['status'])" size="large"
       label="Completed" />
   </el-card>
@@ -79,5 +80,6 @@ const confirmDelete = () => {
     })
 }
 
-const createdAt = computed(() => todo?.createdAt ? formatTimestamp(todo?.createdAt) : '')
+const createdAt = computed(() => todo?.created_at ? formatTimestamp(todo?.created_at) : '')
+const updatedAt = computed(() => todo?.updated_at ? formatTimestamp(todo?.updated_at) : '')
 </script>
